@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Htag, P } from '../components';
+import { Button, Htag, P, Tag } from '../components';
 
 export default function Home(): JSX.Element {
 	return (
@@ -13,7 +13,34 @@ export default function Home(): JSX.Element {
 			</Button>
 			<P size="l">Большой</P>
 			<P>Средний</P>
-			<P size="s">Маленький</P>
+			<P>Маленький</P>
+
+			<Tag color="ghost" href="https://vk.com">
+				Маленький
+			</Tag>
+			<Tag size="m" color="ghost" href="https://vk.com">
+				Средний
+			</Tag>
+
+			<Tag color="green">Маленький</Tag>
+			<Tag size="m" color="green">
+				Средний
+			</Tag>
+
+			<Tag color="grey">Маленький</Tag>
+			<Tag size="m" color="grey">
+				Средний
+			</Tag>
+
+			<Tag color="primary">Маленький</Tag>
+			<Tag size="m" color="primary">
+				Средний
+			</Tag>
+
+			<Tag color="red">Маленький</Tag>
+			<Tag size="m" color="red">
+				Средний
+			</Tag>
 		</>
 	);
 }
