@@ -22,18 +22,23 @@
 	},
 	"homepage": "https://github.com/AlariCode/top-app-demo#readme",
 	"dependencies": {
+		"axios": "^0.24.0",
 		"classnames": "^2.3.1",
+		"date-fns": "^2.27.0",
+		"framer-motion": "^6.2.7",
 		"next": "^12.0.4",
 		"react": "^17.0.2",
-		"react-dom": "^17.0.2"
+		"react-dom": "^17.0.2",
+		"react-hook-form": "^7.27.0"
 	},
 	"devDependencies": {
+		"@next/eslint-plugin-next": "^12.0.7",
 		"@svgr/webpack": "^5.5.0",
 		"@types/node": "^16.11.11",
 		"@types/react": "^17.0.37",
 		"@typescript-eslint/eslint-plugin": "^5.5.0",
 		"@typescript-eslint/parser": "^5.5.0",
-		"eslint": "^8.3.0",
+		"eslint": "^7.32.0",
 		"eslint-plugin-react-hooks": "^4.3.0",
 		"prettier": "^2.5.1",
 		"stylelint": "^14.1.0",

@@ -16,6 +16,11 @@
 		"jsx": "preserve",
 		"incremental": true
 	},
-	"include": ["next-env-custom.d.ts", "images.d.ts", "**/*.ts", "**/*.tsx"],
+	"include": [
+		"layout/next-env-custom.d.ts",
+		"images.d.ts",
+		"**/*.ts",
+		"**/*.tsx"
+	],
 	"exclude": ["node_modules"]
 }
