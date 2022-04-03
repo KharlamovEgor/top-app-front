@@ -12,7 +12,12 @@ import axios from 'axios';
 import { API } from '../../helpers/api';
 import { useState } from 'react';
 
-export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps): JSX.Element => {
+export const ReviewForm = ({
+	productId,
+	isOpened,
+	className,
+	...props
+}: ReviewFormProps): JSX.Element => {
 	const {
 		register,
 		control,
@@ -55,6 +60,7 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps):
 					})}
 					placeholder="Имя"
 					error={errors.name}
+					tabIndex={isOpened ? 0 : -1}
 				/>
 				<Input
 					{...register('title', {
@@ -66,6 +72,7 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps):
 					className={styles.title}
 					placeholder="Заголовок отзыва"
 					error={errors.title}
+					tabIndex={isOpened ? 0 : -1}
 				/>
 				<div className={styles.rating}>
 					<span>Оценка:</span>
@@ -84,6 +91,7 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps):
 								isEditable
 								setRating={field.onChange}
 								error={errors.rating}
+								tabIndex={isOpened ? 0 : -1}
 							/>
 						)}
 						name="rating"
@@ -99,9 +107,12 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps):
 					className={styles.description}
 					placeholder="Текст отзыва"
 					error={errors.description}
+					tabIndex={isOpened ? 0 : -1}
 				/>
 				<div className={styles.submit}>
-					<Button appearance="primary">Отправить</Button>
+					<Button tabIndex={isOpened ? 0 : -1} appearance="primary">
+						Отправить
+					</Button>
 					<span className={styles.info}>
 						* Перед публикацией отзыв пройдет предварительную модерацию и проверку
 					</span>

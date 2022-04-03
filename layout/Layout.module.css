@@ -1,6 +1,6 @@
 .wrapper {
 	display: grid;
-	grid-template-columns: auto 230px minmax(320px, 1200px) auto;
+	grid-template-columns: auto 260px minmax(320px, 1200px) auto;
 	grid-template-rows: auto 1fr auto;
 	gap: 40px 30px;
 
@@ -13,8 +13,6 @@
 
 .header {
 	grid-area: header;
-
-	display: none;
 }
 
 .sidebar {
@@ -23,10 +21,26 @@
 
 .body {
 	grid-area: body;
+	outline: none;
 }
 
 .footer {
 	grid-area: footer;
+}
+
+.skipLink {
+	display: block;
+	position: fixed;
+	left: 100px;
+	top: 0;
+	overflow: hidden;
+	height: 0;
+	background-color: var(--primary);
+	color: var(--white);
+}
+
+.displayed {
+	height: auto;
 }
 
 @media (max-width: 700px) {
@@ -36,14 +50,11 @@
 			"header"
 			"body"
 			"footer";
+		gap: 10px;
 	}
 
 	.sidebar {
-		display: none;
-	}
-
-	.header {
-		display: block;
+		display: none !important;
 	}
 
 	.body {

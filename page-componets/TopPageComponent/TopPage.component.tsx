@@ -35,13 +35,15 @@ export const TopPageComponent = ({
 			<div className={styles.title}>
 				<Htag tag="h1">{page.title}</Htag>
 				{products && (
-					<Tag color="grey" size="m">
+					<Tag aria-label={products.length + 'элементов'} color="grey" size="m">
 						{products.length}
 					</Tag>
 				)}
 				<Sort sort={sort} setSort={setSort} />
 			</div>
-			<div>{sortedProducts && sortedProducts.map((p) => <Product key={p._id} product={p} />)}</div>
+			<div>
+				{sortedProducts && sortedProducts.map((p) => <Product layout key={p._id} product={p} />)}
+			</div>
 			<div className={styles.hhTitle}>
 				<Htag tag="h2">Вакансии - {page.category}</Htag>
 				<Tag color="red" size="m">

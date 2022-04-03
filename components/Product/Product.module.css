@@ -106,6 +106,12 @@
 	line-height: 19px;
 }
 
+.reviews {
+	overflow: hidden;
+
+	padding: 30px;
+}
+
 .reviewButton {
 	margin-left: 20px;
 }
@@ -123,7 +129,7 @@
 	margin-bottom: 20px;
 	padding-left: 15px;
 
-	border-left: 2px solid var(--green);
+	border-left: 2px solid #1dc37e;
 }
 
 .disadvantages {
@@ -151,18 +157,6 @@
 	margin-bottom: 5px;
 
 	border-bottom: 1px dashed var(--gray-light);
-}
-
-.closed {
-	overflow: hidden;
-
-	max-height: 0;
-	padding: 0;
-}
-
-.opened {
-	max-height: auto;
-	padding: 30px;
 }
 
 .rateTitle a {
