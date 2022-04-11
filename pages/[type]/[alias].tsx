@@ -8,9 +8,21 @@ import { withLayout } from '../../layout/Layout';
 import { firstLevelMenu } from '../../helpers/helpers';
 import { TopPageComponent } from '../../page-componets';
 import { API } from '../../helpers/api';
+import Head from 'next/head';
 
 function TopPage({ page, products, firstCategory }: TopPageProps): JSX.Element {
-	return <TopPageComponent page={page} products={products} firstCategory={firstCategory} />;
+	return (
+		<>
+			<Head>
+				<title>{page.metaTitle}</title>
+				<meta name="description" content={page.metaDescription} />
+				<meta property="og:title" content={page.metaTitle} />
+				<meta property="og:description" content={page.metaDescription} />
+				<meta property="og:type" content="article" />
+			</Head>
+			<TopPageComponent page={page} products={products} firstCategory={firstCategory} />
+		</>
+	);
 }
 
 export default withLayout(TopPage);

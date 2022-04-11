@@ -36,6 +36,12 @@ export const Rating = forwardRef(
 			const updatedArray = ratingArray.map((r: JSX.Element, i: number) => {
 				return (
 					<span
+						role={isEditable ? 'slider' : ''}
+						aria-valuenow={rating}
+						aria-valuemax={5}
+						aria-valuemin={1}
+						aria-label={isEditable ? 'Укажите рейтинг' : 'рейтинг' + rating}
+						aria-invalid={error ? true : false}
 						className={cn(styles.star, {
 							[styles.filled]: i < currentRating,
 							[styles.editable]: isEditable,
@@ -108,7 +114,11 @@ export const Rating = forwardRef(
 						<span key={i}>{r}</span>
 					))}
 				</div>
-				{error && <span className={styles.errorMessage}>{error.message}</span>}
+				{error && (
+					<span role="alert" className={styles.errorMessage}>
+						{error.message}
+					</span>
+				)}
 			</div>
 		);
 	},

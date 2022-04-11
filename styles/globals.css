@@ -1,4 +1,4 @@
-html,
+git clearhtml,
 body {
 	margin: 0;
 	padding: 0;
@@ -19,17 +19,26 @@ a {
 	box-sizing: border-box;
 }
 
+.visualyHidden {
+	position: absolute;
+
+	overflow: hidden;
+
+	width: 0;
+	height: 0;
+}
+
 :root {
 	--black: #3B434E;
 	--gray-light: #EBEBEB;
-	--gray-dark: #6c7077;
+	--gray-dark: #6C7077;
 	--gray: #A4A4A4;
 	--white: white;
-	--primary: #7351f5;
+	--primary: #7351F5;
 	--primary-hover: #6344DF;
 	--red: #FC836D;
 	--red-light: #FEA291;
-	--green: #007b48;
+	--green: #007B48;
 	--green-light: #C8F8E4;
 	--font-family: "Noto Sans KR", sans-serif;
 }

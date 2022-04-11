@@ -26,6 +26,7 @@ export const Product = motion(
 				closed: {
 					height: 0,
 					opacity: 0,
+					overflow: 'hidden',
 				},
 				opened: {
 					opacity: 1,
@@ -55,17 +56,27 @@ export const Product = motion(
 						</div>
 						<div className={styles.title}>{product.title}</div>
 						<div className={styles.price}>
-							<span>{priceRu(product.price)}</span>
+							<span>
+								<span className="visualyHidden">цена</span>
+								{priceRu(product.price)}
+							</span>
 							{product.oldPrice ? (
 								<Tag className={styles.oldPrice} color="green">
+									<span className="visualyHidden">скидка</span>
 									{priceRu(product.price - product.oldPrice)}
 								</Tag>
 							) : null}
 						</div>
 						<div className={styles.credit}>
-							{priceRu(product.credit)}/<span className={styles.month}>мес</span>
+							<span>
+								<span className="visualyHidden">кредит</span>
+								{priceRu(product.credit)}/<span className={styles.month}>мес</span>
+							</span>
 						</div>
 						<div className={styles.rating}>
+							<span className="visualyHidden">
+								{'рейтинг' + (product.reviewAvg ?? product.initialRating)}
+							</span>
 							<Rating rating={product.reviewAvg ?? product.initialRating} />
 						</div>
 						<div className={styles.tags}>
@@ -75,8 +86,12 @@ export const Product = motion(
 								</Tag>
 							))}
 						</div>
-						<div className={styles.priceTitle}>цена</div>
-						<div className={styles.creditTitle}>в кредит</div>
+						<div className={styles.priceTitle} aria-hidden>
+							цена
+						</div>
+						<div className={styles.creditTitle} aria-hidden>
+							в кредит
+						</div>
 						<div className={styles.rateTitle}>
 							<a
 								href="#ref"
@@ -125,6 +140,7 @@ export const Product = motion(
 								arrow={isReviewOpened ? 'down' : 'right'}
 								className={styles.reviewButton}
 								onClick={() => setIsReviewOpened((state) => !state)}
+								aria-expanded={!isReviewOpened}
 							>
 								Читать отзывы
 							</Button>

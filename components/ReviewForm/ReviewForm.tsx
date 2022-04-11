@@ -24,6 +24,7 @@ export const ReviewForm = ({
 		handleSubmit,
 		formState: { errors },
 		reset,
+		clearErrors,
 	} = useForm<IReviewForm>();
 	const [isSuccess, setIsSuccess] = useState<boolean>(false);
 	const [error, setError] = useState<string>();
@@ -61,6 +62,7 @@ export const ReviewForm = ({
 					placeholder="Имя"
 					error={errors.name}
 					tabIndex={isOpened ? 0 : -1}
+					aria-invalid={errors.name ? true : false}
 				/>
 				<Input
 					{...register('title', {
@@ -73,6 +75,7 @@ export const ReviewForm = ({
 					placeholder="Заголовок отзыва"
 					error={errors.title}
 					tabIndex={isOpened ? 0 : -1}
+					aria-invalid={errors.title ? true : false}
 				/>
 				<div className={styles.rating}>
 					<span>Оценка:</span>
@@ -108,9 +111,11 @@ export const ReviewForm = ({
 					placeholder="Текст отзыва"
 					error={errors.description}
 					tabIndex={isOpened ? 0 : -1}
+					aria-label="текст отзыва"
+					aria-invalid={errors.description ? true : false}
 				/>
 				<div className={styles.submit}>
-					<Button tabIndex={isOpened ? 0 : -1} appearance="primary">
+					<Button tabIndex={isOpened ? 0 : -1} onClick={() => clearErrors()} appearance="primary">
 						Отправить
 					</Button>
 					<span className={styles.info}>
@@ -119,16 +124,40 @@ export const ReviewForm = ({
 				</div>
 			</div>
 			{isSuccess && (
-				<div className={cn(styles.panel, styles.success)}>
+				<div className={cn(styles.panel, styles.success)} role="alert">
 					<div className={styles.successTitle}>Ваш отзыв отправлен</div>
-					<div>Спасибо, ваш отзыв будет опубликован аослк проверки</div>
-					<CloseIcon className={styles.close} onClick={() => setIsSuccess(false)} />
+					<div>Спасибо, ваш отзыв будет опубликован после проверки</div>
+					<button
+						className={styles.close}
+						araia-label="Закрыть оповещение"
+						onClick={() => setIsSuccess(false)}
+						onKeyDown={(e) => {
+							if (e.code == 'Space' || e.code == 'Enter') {
+								e.preventDefault();
+								setIsSuccess(false);
+							}
+						}}
+					>
+						<CloseIcon />
+					</button>
 				</div>
 			)}
 			{error && (
-				<div className={cn(styles.panel, styles.error)}>
+				<div className={cn(styles.panel, styles.error)} role="alert">
 					Что-то пошло не так, попробуйте обновить страницу
-					<CloseIcon className={styles.close} onClick={() => setError('')} />
+					<button
+						className={styles.close}
+						onClick={() => setError(undefined)}
+						aria-label="Закрыть оповещение"
+						onKeyDown={(e) => {
+							if (e.code == 'Space' || e.code == 'Enter') {
+								e.preventDefault();
+								setError(undefined);
+							}
+						}}
+					>
+						<CloseIcon />
+					</button>
 				</div>
 			)}
 		</form>

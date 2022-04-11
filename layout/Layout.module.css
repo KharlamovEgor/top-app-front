@@ -21,6 +21,7 @@
 
 .body {
 	grid-area: body;
+
 	outline: none;
 }
 
@@ -29,14 +30,17 @@
 }
 
 .skipLink {
-	display: block;
 	position: fixed;
-	left: 100px;
 	top: 0;
+	left: 100px;
+
+	display: block;
 	overflow: hidden;
+
 	height: 0;
-	background-color: var(--primary);
+
 	color: var(--white);
+	background-color: var(--primary);
 }
 
 .displayed {
