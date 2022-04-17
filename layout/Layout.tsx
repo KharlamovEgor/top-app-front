@@ -9,7 +9,8 @@ import { Up } from '../components';
 import cn from 'classnames';
 
 export const Layout = ({ children }: LayoutProps): JSX.Element => {
-	const [isSkipLinkDisplayed, setIsSkipLinkDisplayed] = useState<boolean>(false);
+	const [isSkipLinkDisplayed, setIsSkipLinkDisplayed] =
+		useState<boolean>(false);
 	const bodyRef = useRef<HTMLDivElement>(null);
 
 	const skipContentAction = (key: KeyboardEvent) => {
@@ -23,7 +24,7 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
 	return (
 		<div className={styles.wrapper}>
 			<a
-				tabIndex={1}
+				tabIndex={0}
 				onFocus={() => setIsSkipLinkDisplayed(true)}
 				onKeyDown={skipContentAction}
 				className={cn(styles.skipLink, {
