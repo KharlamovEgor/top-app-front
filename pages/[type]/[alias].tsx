@@ -2,15 +2,23 @@ import axios from 'axios';
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { MenuItem } from '../../interfaces/menu.interface';
-import { TopLevelCategory, TopPageModel } from '../../interfaces/page.interface';
+import {
+	TopLevelCategory,
+	TopPageModel,
+} from '../../interfaces/page.interface';
 import { ProductModel } from '../../interfaces/product.interface';
 import { withLayout } from '../../layout/Layout';
 import { firstLevelMenu } from '../../helpers/helpers';
 import { TopPageComponent } from '../../page-componets';
 import { API } from '../../helpers/api';
 import Head from 'next/head';
+import { Error404 } from '../404';
 
 function TopPage({ page, products, firstCategory }: TopPageProps): JSX.Element {
+	if (!page || !products) {
+		return <Error404 />;
+	}
+
 	return (
 		<>
 			<Head>
@@ -20,7 +28,11 @@ function TopPage({ page, products, firstCategory }: TopPageProps): JSX.Element {
 				<meta property="og:description" content={page.metaDescription} />
 				<meta property="og:type" content="article" />
 			</Head>
-			<TopPageComponent page={page} products={products} firstCategory={firstCategory} />
+			<TopPageComponent
+				page={page}
+				products={products}
+				firstCategory={firstCategory}
+			/>
 		</>
 	);
 }
@@ -35,7 +47,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 			firstCategory: m.id,
 		});
 
-		paths = paths.concat(menu.flatMap((s) => s.pages.map((p) => `/${m.route}/${p.alias}`)));
+		paths = paths.concat(
+			menu.flatMap((s) => s.pages.map((p) => `/${m.route}/${p.alias}`)),
+		);
 	}
 
 	return {
@@ -70,11 +84,16 @@ export const getStaticProps: GetStaticProps = async ({
 			};
 		}
 
-		const { data: page } = await axios.get<TopPageModel>(API.topPage.byAlias + params.alias);
-		const { data: products } = await axios.post<ProductModel[]>(API.product.find, {
-			category: page.category,
-			limit: 10,
-		});
+		const { data: page } = await axios.get<TopPageModel>(
+			API.topPage.byAlias + params.alias,
+		);
+		const { data: products } = await axios.post<ProductModel[]>(
+			API.product.find,
+			{
+				category: page.category,
+				limit: 10,
+			},
+		);
 
 		return {
 			props: {

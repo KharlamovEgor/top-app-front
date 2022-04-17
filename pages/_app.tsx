@@ -1,16 +1,17 @@
 import { AppProps } from 'next/app';
 import '../styles/globals.css';
 import Head from 'next/head';
+import Router from 'next/router';
 import React from 'react';
 import ym, { YMInitializer } from 'react-yandex-metrika';
 
-function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
-	router.events.on('routeChangeComplete', (url: string) => {
-		if (typeof window !== 'undefined') {
-			ym('hit', url);
-		}
-	});
+Router.events.on('routeChangeComplete', (url: string) => {
+	if (typeof window !== 'undefined') {
+		ym('hit', url);
+	}
+});
 
+function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
 	return (
 		<>
 			<Head>
@@ -22,7 +23,10 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
 					href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
 					rel="stylesheet"
 				/>
-				<meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN + router.asPath} />
+				<meta
+					property="og:url"
+					content={process.env.NEXT_PUBLIC_DOMAIN + router.asPath}
+				/>
 				<meta property="og:locale" content="ru_RU" />
 			</Head>
 			<YMInitializer

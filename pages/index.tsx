@@ -1,6 +1,15 @@
 import { GetStaticProps } from 'next';
 import React, { useState } from 'react';
-import { Button, Htag, Input, P, Rating, Search, Tag, Textarea } from '../components';
+import {
+	Button,
+	Htag,
+	Input,
+	P,
+	Rating,
+	Search,
+	Tag,
+	Textarea,
+} from '../components';
 import { withLayout } from '../layout/Layout';
 import axios from 'axios';
 import { MenuItem } from '../interfaces/menu.interface';
@@ -73,7 +82,7 @@ export const getStaticProps: GetStaticProps = async (): Promise<{
 	};
 };
 
-interface HomeProps extends Record<string, unknown> {
+export interface HomeProps extends Record<string, unknown> {
 	menu: MenuItem[];
 	firstCategory: number;
 }

@@ -59,8 +59,9 @@
 	top: 20px;
 	right: 20px;
 
-	background: none;
 	border: none;
+
+	background: none;
 }
 
 .error .close path {
