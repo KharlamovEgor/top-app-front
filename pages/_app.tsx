@@ -34,8 +34,8 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
 				options={{
 					webvisor: true,
 					defer: true,
-					version: '2',
 				}}
+				version="2"
 			/>
 			<Component {...pageProps} />
 		</>
